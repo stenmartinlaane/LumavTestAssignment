@@ -5,21 +5,12 @@ namespace App\Commands\Services\Euronics;
 
 use App\Models\Category;
 use App\Models\Product;
-use DOMNode;
 use Facebook\WebDriver\Exception\NoSuchElementException;
 use Facebook\WebDriver\Exception\TimeoutException;
-use Facebook\WebDriver\Exception\UnsupportedOperationException;
 use Facebook\WebDriver\WebDriverBy;
-use Facebook\WebDriver\WebDriverElement;
-use Facebook\WebDriver\WebDriverExpectedCondition;
-use Facebook\WebDriver\WebDriverWait;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Sleep;
-use Ramsey\Uuid\Uuid;
-use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Panther\Client;
 use Facebook\WebDriver\Remote\RemoteWebElement;
-use voku\helper\HtmlDomParser;
 
 final class EuronicsScrapingService
 {
@@ -33,11 +24,8 @@ final class EuronicsScrapingService
                         $subSubCategory->addProduct($product);
                     }
                     Storage::disk('local')->put("productsByCategory$key.json", json_encode($categories));
-                    break;
                 }
-                break;
             }
-            break;
         }
     }
 
@@ -62,7 +50,6 @@ final class EuronicsScrapingService
             } catch (\Exception $e) {
                 break;
             }
-//            break; //TODO: REMOVE THIS!!!
             $crawler = $client->getCrawler();
             $newLink = $crawler->findElement(WebDriverBy::cssSelector(".loading-button"))->getAttribute("href");
             $newLink .= "&p=1";

@@ -12,7 +12,7 @@ class EuronicsScrapingServiceTest extends TestCase
     {
         $service = new EuronicsScrapingService();
 //        $uuid = Uuid::uuid4()->toString();
-        $uuid = "testkey";
+        $uuid = "AllData";
         $service->getProductsByCategories($uuid);
     }
     public function testScrapeProductsFromLink()

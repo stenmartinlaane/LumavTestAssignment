@@ -17,7 +17,7 @@ final class EuronicsScrapingController extends Controller {
 
     public function getPartialScrapingResults()
     {
-        $filePath = "productsByCategorytestkey.json";
+        $filePath = "productsByCategoryAllData.json";
         if (!Storage::disk('local')->exists($filePath)) {
             return response()->json(['error' => 'File not found'], 404);
         }
